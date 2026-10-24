@@ -7,6 +7,17 @@ export const USING_API = API_URL !== '';
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+// Bài 3 · Bài 4 — lấy toàn bộ danh sách sản phẩm (GET <base>/phones), offline thì trả dữ liệu mẫu
+export async function fetchPhones(): Promise<Phone[]> {
+  if (!USING_API) {
+    await sleep(600);
+    return PHONES;
+  }
+  const res = await fetch(`${API_URL}/phones`);
+  if (!res.ok) throw new Error(`Máy chủ trả về lỗi ${res.status}`);
+  return (await res.json()) as Phone[];
+}
+
 export async function fetchPhone(id: string): Promise<Phone> {
   if (!USING_API) {
     // chế độ offline: giả lập độ trễ để thấy loading

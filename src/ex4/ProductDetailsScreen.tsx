@@ -2,7 +2,8 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stars } from '../components/Stars';
-import { PHONE_COLORS, PHONES } from '../data/phones';
+import { usePhones } from '../api/PhonesContext';
+import { PHONE_COLORS } from '../data/phones';
 import { colors, formatPrice } from '../theme';
 import { useFavorites } from './FavoritesContext';
 import { RootProps } from './types';
@@ -10,7 +11,8 @@ import { RootProps } from './types';
 export function ProductDetailsScreen({ route }: RootProps<'ProductDetails'>) {
   // Bài 4 · 4.2 TODO 4: lấy id từ params rồi tìm sản phẩm trong PHONES
   const { id } = route.params;
-  const phone = PHONES.find((p) => p.id === id);
+  const phones = usePhones();
+  const phone = phones.find((p) => p.id === id);
 
   // hook phải gọi trước mọi return sớm
   const { has, toggle } = useFavorites();

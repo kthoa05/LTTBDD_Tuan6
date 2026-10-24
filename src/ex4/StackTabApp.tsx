@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme';
+import { PhonesProvider } from '../api/PhonesContext';
 import { FavoritesProvider } from './FavoritesContext';
 import { FavoritesTab } from './FavoritesTab';
 import { ProductDetailsScreen } from './ProductDetailsScreen';
@@ -42,17 +43,19 @@ function HomeTabs() {
 // Bài 4 · 4.2 TODO 2: FavoritesProvider > NavigationContainer > Stack.Navigator (Home + ProductDetails)
 export function StackTabApp() {
   return (
-    <FavoritesProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name='Home' component={HomeTabs} options={{ title: 'Cửa hàng' }} />
-          <Stack.Screen
-            name='ProductDetails'
-            component={ProductDetailsScreen}
-            options={{ title: 'Chi tiết sản phẩm' }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </FavoritesProvider>
+    <PhonesProvider>
+      <FavoritesProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name='Home' component={HomeTabs} options={{ title: 'Cửa hàng' }} />
+            <Stack.Screen
+              name='ProductDetails'
+              component={ProductDetailsScreen}
+              options={{ title: 'Chi tiết sản phẩm' }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesProvider>
+    </PhonesProvider>
   );
 }

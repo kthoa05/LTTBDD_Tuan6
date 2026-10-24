@@ -1,7 +1,7 @@
 // Bài 4 · 4.2 — tab Favorites: lọc PHONES theo danh sách id đã lưu trong Context
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { ProductRow } from '../components/ProductRow';
-import { PHONES } from '../data/phones';
+import { usePhones } from '../api/PhonesContext';
 import { colors } from '../theme';
 import { useFavorites } from './FavoritesContext';
 import { TabProps } from './types';
@@ -9,7 +9,8 @@ import { TabProps } from './types';
 export function FavoritesTab({ navigation }: TabProps<'Favorites'>) {
   // Bài 4 · 4.2 TODO 8: lấy ids từ Context rồi lọc PHONES
   const { ids } = useFavorites();
-  const favorites = PHONES.filter((p) => ids.includes(p.id));
+  const phones = usePhones();
+  const favorites = phones.filter((p) => ids.includes(p.id));
 
   if (favorites.length === 0) {
     return (

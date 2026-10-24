@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { usePhones, PhonesProvider } from '../api/PhonesContext';
 import { ProductRow } from '../components/ProductRow';
-import { PHONES } from '../data/phones';
 import { colors } from '../theme';
 
 type TabParamList = { Home: undefined; Search: undefined; Profile: undefined };
@@ -22,9 +22,10 @@ const ICONS: Record<keyof TabParamList, [IconName, IconName]> = {
 
 // Bài 3 · 3.1 (khung có sẵn): tab Home hiển thị danh sách FlatList, mỗi dòng là thẻ sản phẩm (ảnh, sao, giá)
 function HomeTab() {
+  const phones = usePhones();
   return (
     <FlatList
-      data={PHONES}
+      data={phones}
       keyExtractor={(p) => p.id}
       contentContainerStyle={{ padding: 16, gap: 10 }}
       renderItem={({ item }) => <ProductRow phone={item} />}
@@ -34,8 +35,9 @@ function HomeTab() {
 
 // Bài 3 · 3.1 TODO 1: tab Search — TextInput lọc sản phẩm theo từ khóa (không phân biệt hoa/thường)
 function SearchTab() {
+  const phones = usePhones();
   const [keyword, setKeyword] = useState('');
-  const results = PHONES.filter((p) => p.name.toLowerCase().includes(keyword.toLowerCase()));
+  const results = phones.filter((p) => p.name.toLowerCase().includes(keyword.toLowerCase()));
 
   return (
     <View style={s.screen}>
@@ -75,20 +77,22 @@ function ProfileTab() {
 // Bài 3 · 3.1 TODO 3: NavigationContainer > Tab.Navigator, icon đổi đặc/viền theo focused, màu đỏ khi chọn
 export function BottomTabApp() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarActiveTintColor: colors.red,
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name={ICONS[route.name][focused ? 0 : 1]} size={size} color={color} />
-          ),
-        })}
-      >
-        <Tab.Screen name='Home' component={HomeTab} options={{ title: 'Trang chủ' }} />
-        <Tab.Screen name='Search' component={SearchTab} options={{ title: 'Tìm kiếm' }} />
-        <Tab.Screen name='Profile' component={ProfileTab} options={{ title: 'Cá nhân' }} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <PhonesProvider>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarActiveTintColor: colors.red,
+            tabBarIcon: ({ focused, color, size }) => (
+              <Ionicons name={ICONS[route.name][focused ? 0 : 1]} size={size} color={color} />
+            ),
+          })}
+        >
+          <Tab.Screen name='Home' component={HomeTab} options={{ title: 'Trang chủ' }} />
+          <Tab.Screen name='Search' component={SearchTab} options={{ title: 'Tìm kiếm' }} />
+          <Tab.Screen name='Profile' component={ProfileTab} options={{ title: 'Cá nhân' }} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </PhonesProvider>
   );
 }
 
