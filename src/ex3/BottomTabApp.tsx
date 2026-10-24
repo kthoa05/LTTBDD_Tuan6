@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ProductRow } from '../components/ProductRow';
 import { PHONES } from '../data/phones';
 import { colors } from '../theme';
 
@@ -19,18 +20,14 @@ const ICONS: Record<keyof TabParamList, [IconName, IconName]> = {
   Profile: ['person', 'person-outline'],
 };
 
-// Bài 3 · 3.1 (khung có sẵn): tab Home hiển thị danh sách FlatList đơn giản
+// Bài 3 · 3.1 (khung có sẵn): tab Home hiển thị danh sách FlatList, mỗi dòng là thẻ sản phẩm (ảnh, sao, giá)
 function HomeTab() {
   return (
     <FlatList
       data={PHONES}
       keyExtractor={(p) => p.id}
       contentContainerStyle={{ padding: 16, gap: 10 }}
-      renderItem={({ item }) => (
-        <View style={s.card}>
-          <Text>{item.name.split(' - ')[0]}</Text>
-        </View>
-      )}
+      renderItem={({ item }) => <ProductRow phone={item} />}
     />
   );
 }

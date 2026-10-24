@@ -5,7 +5,7 @@ import { colors, formatPrice } from '../theme';
 import { Phone } from '../types';
 import { Stars } from './Stars';
 
-export function ProductRow({ phone, onPress }: { phone: Phone; onPress: () => void }) {
+export function ProductRow({ phone, onPress }: { phone: Phone; onPress?: () => void }) {
   return (
     <Pressable style={styles.card} onPress={onPress}>
       <Image source={PHONE_COLORS[phone.defaultColor].image} style={styles.thumb} resizeMode='contain' />
