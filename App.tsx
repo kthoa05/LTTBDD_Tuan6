@@ -1,15 +1,15 @@
-// Đề Lab06 · Bài 2 — Gắn API vào Bài 1 (mở thẳng vào Bài 2; Bài 1 nằm trong SelectPhoneApi)
+// Đề Lab06 · Bài 3 — Bottom Tab (mở thẳng vào Bài 3; Bài 1 và Bài 2 vẫn nằm trong project)
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { SelectPhoneApi } from './src/ex1/SelectPhoneApi';
+import { BottomTabApp } from './src/ex3/BottomTabApp';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        {/* Bài 2 · 2.1: tải dữ liệu từ EXPO_PUBLIC_API_URL (mockapi), rồi hiện Bài 1 */}
-        <SelectPhoneApi />
+        {/* Bài 3 · 3.1: Bottom Tab gồm Home / Search / Profile */}
+        <BottomTabApp />
         <StatusBar style='auto' />
       </SafeAreaProvider>
     </GestureHandlerRootView>
