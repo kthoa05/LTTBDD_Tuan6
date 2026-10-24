@@ -1,3 +1,6 @@
+// Bắt buộc cho React Navigation (Drawer, gesture) — phải import đầu tiên
+import 'react-native-gesture-handler';
+
 import { registerRootComponent } from 'expo';
 
 import App from './App';
