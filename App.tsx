@@ -1,16 +1,15 @@
-// Đề Lab06 · Bài 1 — Select Phone (mở thẳng vào Bài 1; các bài khác sẽ thêm sau)
+// Đề Lab06 · Bài 2 — Gắn API vào Bài 1 (mở thẳng vào Bài 2; Bài 1 nằm trong SelectPhoneApi)
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { PHONES } from './src/data/phones';
-import { SelectPhoneApp } from './src/ex1/SelectPhoneApp';
+import { SelectPhoneApi } from './src/ex1/SelectPhoneApi';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        {/* Bài 1 · 1.1: dùng sản phẩm đầu tiên (Joy 3) như đề */}
-        <SelectPhoneApp phone={PHONES[0]} />
+        {/* Bài 2 · 2.1: tải dữ liệu từ EXPO_PUBLIC_API_URL (mockapi), rồi hiện Bài 1 */}
+        <SelectPhoneApi />
         <StatusBar style='auto' />
       </SafeAreaProvider>
     </GestureHandlerRootView>
