@@ -52,11 +52,7 @@ function SearchTab() {
           data={results}
           keyExtractor={(p) => p.id}
           contentContainerStyle={{ gap: 10 }}
-          renderItem={({ item }) => (
-            <View style={s.card}>
-              <Text>{item.name.split(' - ')[0]}</Text>
-            </View>
-          )}
+          renderItem={({ item }) => <ProductRow phone={item} />}
         />
       )}
     </View>
