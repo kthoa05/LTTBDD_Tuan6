@@ -11,9 +11,7 @@ import { RootProps } from './types';
 export function ProductDetailsScreen({ route }: RootProps<'ProductDetails'>) {
   // Bài 4 · 4.2 TODO 4: lấy id từ params rồi tìm sản phẩm trong PHONES
   const { id } = route.params;
-  const phones = usePhones();
-  const phone = phones.find((p) => p.id === id);
-
+  const phone = PHONES.find((p) => p.id === id);
   // hook phải gọi trước mọi return sớm
   const { has, toggle } = useFavorites();
 

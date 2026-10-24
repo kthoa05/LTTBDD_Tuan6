@@ -68,8 +68,8 @@ function ProfileTab() {
       <View style={s.avatar}>
         <Text style={s.avatarText}>N</Text>
       </View>
-      <Text style={s.name}>Nguyễn Văn An</Text>
-      <Text style={s.email}>an.nguyen@example.com</Text>
+      <Text style={s.name}>Lê Thị Kiều Thoa</Text>
+      <Text style={s.email}>thoa.le@example.com</Text>
     </View>
   );
 }
