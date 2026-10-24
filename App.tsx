@@ -1,15 +1,15 @@
-// Đề Lab06 · Bài 4 — Stack + Tab + Passing Params (mở thẳng vào Bài 4; các bài trước vẫn nằm trong project)
+// Đề Lab06 · Bài 3 — Bottom Tab (mở thẳng vào Bài 3; Bài 1 và Bài 2 vẫn nằm trong project)
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { StackTabApp } from './src/ex4/StackTabApp';
+import { BottomTabApp } from './src/ex3/BottomTabApp';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        {/* Bài 4 · 4.2: Stack gồm Home (Tab Products / Favorites) và ProductDetails */}
-        <StackTabApp />
+        {/* Bài 3 · 3.1: Bottom Tab gồm Home / Search / Profile */}
+        <BottomTabApp />
         <StatusBar style='auto' />
       </SafeAreaProvider>
     </GestureHandlerRootView>
