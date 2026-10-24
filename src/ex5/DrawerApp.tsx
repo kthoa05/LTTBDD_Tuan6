@@ -44,8 +44,8 @@ function ProfileScreen() {
       <View style={s.avatar}>
         <Text style={s.avatarText}>NA</Text>
       </View>
-      <Text style={[s.big, { color: c.text }]}>Nguyễn Văn An</Text>
-      <Text style={[s.muted, { color: c.muted }]}>an.nguyen@example.com</Text>
+      <Text style={[s.big, { color: c.text }]}>Thoa Thị Kiều Lê</Text>
+      <Text style={[s.muted, { color: c.muted }]}>thoa.le@example.com</Text>
     </View>
   );
 }
